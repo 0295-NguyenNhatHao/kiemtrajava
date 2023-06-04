@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <th:block th:replace="layout::link-css"></th:block>
+  <title >Thêm Nhân Viên</title>
+</head>
+<body>
+<th:block th:replace="layout::header"></th:block>
+<div class="container">
+  <h1>Thêm Nhân Viên</h1>
+  <form th:action="@{/nhanviens/add}" th:object="${nhanvien}" method="post"?>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="Ma_NV" >MaNV: </label>
+      <input class="form-control" type="text" th:field="*{Ma_NV}" id="Ma_NV">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="Ten_NV" >TenNV: </label>
+      <input class="form-control" type="text" th:field="*{Ten_NV}" id="Ten_NV">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="Phai" >Phai: </label>
+      <input class="form-control" type="text" th:field="*{Phai}" id="Phai">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="Noi_Sinh" >Noi Sinh: </label>
+      <input class="form-control" type="text" th:field="*{Noi_Sinh}" id="Noi_Sinh">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="phongBan" >Phong Ban: </label>
+      <select class="form-control" id="phongBan" name="phongBan.Ma_Phong">
+        <option value="">&#45;&#45; Select Category &#45;&#45;</option>
+        <option th:each="phongban : ${phongbans}" th:value="${phongban.Ma_Phong}"
+                th:text="${phongban.Ten_Phong}"></option>
+      </select>
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="Luong" >Luong: </label>
+      <input class="form-control" type="text" th:field="*{Luong}" id="Luong">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Save">
+  </form>
+  <br>
+  <a th:href="@{/nhanviens}">Back to List</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
